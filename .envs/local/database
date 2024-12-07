@@ -1,0 +1,7 @@
+MYSQL_HOST=database
+MYSQL_PORT=3306
+MYSQL_DATABASE=wh_database
+MYSQL_USER=wh_user
+MYSQL_PASSWORD=my.passw0rd.is.a.secr3t
+#
+MYSQL_ROOT_PASSWORD=my.root.passw0rd.is.a.secr3t

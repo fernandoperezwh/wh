@@ -1,0 +1,20 @@
+# A secret key for a particular Django installation. This is used to provide cryptographic
+# signing, and should be set to a unique, unpredictable value
+DJANGO_SECRET_KEY=django-insecure-c&7li0h^-l6p80jbsx8sx)kde&zo5wzb_px-l!s+49o+)8f24(
+
+# A boolean that turns on/off debug mode.
+DJANGO_DEBUG=1
+
+# A list of strings representing the host/domain names that this Django site can serve.
+# This is a security measure to prevent HTTP Host header attacks, which are possible
+# even under many seemingly-safe web server configurations.
+DJANGO_ALLOWED_HOSTS=*,
+
+# A list of trusted origins for unsafe requests (e.g. POST).
+DJANGO_CSRF_TRUSTED_ORIGINS=
+
+# A list of IP addresses, as strings, that:
+#   - Allow the debug() context processor to add some variables to the template context.
+#   - Can use the admindocs bookmarklets even if not logged in as a staff user.
+#   - Are marked as “internal” (as opposed to “EXTERNAL”) in AdminEmailHandler emails.
+DJANGO_INTERNAL_IPS=127.0.0.1,

@@ -17,27 +17,28 @@ import environ
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Get the wh_ENVIRON value to load the env variables
-server_env = os.environ.get('WH_ENVIRON') or 'development'
-path = str(BASE_DIR / F'.config/environment/{server_env}/.env')
-environ.Env.read_env(path)
-
-env = environ.Env(
-    # set casting, default value
-    DEBUG=(bool, True),
-    SECRET_KEY=(str, ),
-)
+# region Set environment variables
+# We ask for the PYTHON_ENV to define the server mode. If PYTHON_ENV doesn't exist in environment variables, the
+#  default value is set to 'local' mode.
+#  In this case, PYTHON_ENV has the same purpose of NODE_ENV variable.
+server_env = os.environ.get('PYTHON_ENV') or 'local'
+# Take and load environment variables.env file.
+print(str(BASE_DIR / F'.envs/{server_env}/app'))
+environ.Env.read_env(str(BASE_DIR / F'.envs/{server_env}/app'))
+environ.Env.read_env(str(BASE_DIR / F'.envs/{server_env}/database'))
+env = environ.Env()
+# endregion
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env.str('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+DEBUG = env.bool('DJANGO_DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = env.list('DJANGO_ALLOWED_HOSTS')
 
 
 # Application definition
@@ -51,6 +52,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Local apps
     'wh.apps.users',
+    'wh.apps.system',
+    'wh.apps.fintrack',
 ]
 
 MIDDLEWARE = [
